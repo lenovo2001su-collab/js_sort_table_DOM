@@ -4,8 +4,6 @@ const table = document.querySelector('table');
 const thead = table.querySelector('thead');
 const tbody = table.querySelector('tbody');
 
-let sortDirection = 1;
-
 thead.addEventListener('click', (e) => {
   const th = e.target.closest('th');
 
@@ -15,8 +13,6 @@ thead.addEventListener('click', (e) => {
 
   const columnIndex = th.cellIndex;
   const rows = Array.from(tbody.rows);
-
-  sortDirection *= -1;
 
   rows.sort((rowA, rowB) => {
     const a = rowA.cells[columnIndex].textContent.trim();
@@ -29,7 +25,7 @@ thead.addEventListener('click', (e) => {
     //  return (numA - numB) * sortDirection;
     //  }
 
-    return a.localeCompare(b, 'uk', { numeric: true }) * sortDirection;
+    return a.localeCompare(b, 'uk', { numeric: true });
   });
 
   tbody.append(...rows);
